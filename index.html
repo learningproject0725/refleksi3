@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Refleksi 3 - Pemangkasan Rambut</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h3 {
+      margin-bottom: 5px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 6px;
+      font-size: 14px;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #eee;
+      text-align: center;
+    }
+    td:nth-child(1) {
+      text-align: center;
+      width: 40px;
+    }
+    td:nth-child(3), td:nth-child(4) {
+      text-align: center;
+      width: 60px;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button + button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Refleksi 3</h3>
+  <p>Menguraikan teknik dan prosedur pemangkasan rambut solid, graduasi dan layering. Ukurlah kemampuan pemahaman Anda terhadap penyajian materi pengetahuan pada pembelajaran 3, dengan mengisi tabel kuisioner berikut ini.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2">No</th>
+        <th rowspan="2">Pernyataan</th>
+        <th colspan="2">Pemahaman</th>
+      </tr>
+      <tr>
+        <th>Ya</th>
+        <th>Tidak</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Saya dapat melakukan pemangkasan rambut solid (blunt cut)</td>
+        <td><input type="checkbox" id="q1-yes"></td>
+        <td><input type="checkbox" id="q1-no"></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Saya dapat melakukan pemangkasan rambut graduasi/ bertumpuk (graduated cut)</td>
+        <td><input type="checkbox" id="q2-yes"></td>
+        <td><input type="checkbox" id="q2-no"></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Saya dapat melakukan pemangkasan rambut layer/ berlapis (layering cut)</td>
+        <td><input type="checkbox" id="q3-yes"></td>
+        <td><input type="checkbox" id="q3-no"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button onclick="saveProgress()">Simpan</button>
+  <button onclick="exportToDoc()">Download ke Word</button>
+
+  <script>
+    // Load dari localStorage saat halaman dibuka
+    window.onload = () => {
+      ['q1-yes','q1-no','q2-yes','q2-no','q3-yes','q3-no'].forEach(id => {
+        document.getElementById(id).checked = localStorage.getItem(id) === 'true';
+      });
+    };
+
+    // Simpan ke localStorage
+    function saveProgress() {
+      ['q1-yes','q1-no','q2-yes','q2-no','q3-yes','q3-no'].forEach(id => {
+        localStorage.setItem(id, document.getElementById(id).checked);
+      });
+      alert('Jawaban berhasil disimpan.');
+    }
+
+    // Ekspor ke Word
+    function exportToDoc() {
+      const html = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office'
+              xmlns:w='urn:schemas-microsoft-com:office:word'
+              xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Refleksi 3</title></head><body>
+        <h2>Refleksi 3</h2>
+        <table border='1' cellpadding='6' cellspacing='0'>
+          <tr>
+            <th rowspan='2'>No</th>
+            <th rowspan='2'>Pernyataan</th>
+            <th colspan='2'>Pemahaman</th>
+          </tr>
+          <tr>
+            <th>Ya</th>
+            <th>Tidak</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Saya dapat melakukan pemangkasan rambut solid (blunt cut)</td>
+            <td>${document.getElementById('q1-yes').checked ? '✓' : ''}</td>
+            <td>${document.getElementById('q1-no').checked ? '✓' : ''}</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Saya dapat melakukan pemangkasan rambut graduasi/ bertumpuk (graduated cut)</td>
+            <td>${document.getElementById('q2-yes').checked ? '✓' : ''}</td>
+            <td>${document.getElementById('q2-no').checked ? '✓' : ''}</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Saya dapat melakukan pemangkasan rambut layer/ berlapis (layering cut)</td>
+            <td>${document.getElementById('q3-yes').checked ? '✓' : ''}</td>
+            <td>${document.getElementById('q3-no').checked ? '✓' : ''}</td>
+          </tr>
+        </table></body></html>`;
+
+      const blob = new Blob(['\ufeff' + html], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Refleksi_3_Pemangkasan.doc';
+      link.click();
+    }
+  </script>
+</body>
+</html>
