@@ -56,7 +56,7 @@
 </head>
 <body>
   <h3>Refleksi 3</h3>
-  <p>Menguraikan teknik dan prosedur pemangkasan rambut solid, graduasi dan layering. Ukurlah kemampuan pemahaman Anda terhadap penyajian materi pengetahuan pada pembelajaran 3, dengan mengisi tabel kuisioner berikut ini.</p>
+  <p>Menguraikan teknik dan prosedur penataan pada desain pemangkasan rambut solid (blunt cut). Ukurlah kemampuan pemahaman Anda terhadap penyajian materi pengetahuan pada pembelajaran 3, dengan mengisi tabel kuisioner berikut ini.</p>
 
   <table>
     <thead>
@@ -73,21 +73,33 @@
     <tbody>
       <tr>
         <td>1</td>
-        <td>Saya dapat melakukan pemangkasan rambut solid (blunt cut)</td>
+        <td>Saya dapat menganalisis konsep pemangkasan rambut dasar dan penataan (teknik solid)</td>
         <td><input type="checkbox" id="q1-yes"></td>
         <td><input type="checkbox" id="q1-no"></td>
       </tr>
       <tr>
         <td>2</td>
-        <td>Saya dapat melakukan pemangkasan rambut graduasi/ bertumpuk (graduated cut)</td>
+        <td>Saya dapat menganalisis jenis-jenis pemangkasan rambut dasar (teknik solid)</td>
         <td><input type="checkbox" id="q2-yes"></td>
         <td><input type="checkbox" id="q2-no"></td>
       </tr>
       <tr>
         <td>3</td>
-        <td>Saya dapat melakukan pemangkasan rambut layer/ berlapis (layering cut)</td>
+        <td>Saya dapat menerapkan prosedur pemangkasan rambut dasar (teknik solid)</td>
         <td><input type="checkbox" id="q3-yes"></td>
         <td><input type="checkbox" id="q3-no"></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Saya dapat menerapkan penampilan secara keseluruhan (total look)</td>
+        <td><input type="checkbox" id="q4-yes"></td>
+        <td><input type="checkbox" id="q4-no"></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Saya dapat mengakhiri pemangkasan rambut dasar dan penataan (teknik solid)</td>
+        <td><input type="checkbox" id="q5-yes"></td>
+        <td><input type="checkbox" id="q5-no"></td>
       </tr>
     </tbody>
   </table>
@@ -98,14 +110,16 @@
   <script>
     // Load dari localStorage saat halaman dibuka
     window.onload = () => {
-      ['q1-yes','q1-no','q2-yes','q2-no','q3-yes','q3-no'].forEach(id => {
+      ['q1-yes','q1-no','q2-yes','q2-no','q3-yes','q3-no','q4-yes','q4-no','q5-yes','q5-no']
+      .forEach(id => {
         document.getElementById(id).checked = localStorage.getItem(id) === 'true';
       });
     };
 
     // Simpan ke localStorage
     function saveProgress() {
-      ['q1-yes','q1-no','q2-yes','q2-no','q3-yes','q3-no'].forEach(id => {
+      ['q1-yes','q1-no','q2-yes','q2-no','q3-yes','q3-no','q4-yes','q4-no','q5-yes','q5-no']
+      .forEach(id => {
         localStorage.setItem(id, document.getElementById(id).checked);
       });
       alert('Jawaban berhasil disimpan.');
@@ -131,21 +145,33 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Saya dapat melakukan pemangkasan rambut solid (blunt cut)</td>
+            <td>Saya dapat menganalisis konsep pemangkasan rambut dasar dan penataan (teknik solid)</td>
             <td>${document.getElementById('q1-yes').checked ? '✓' : ''}</td>
             <td>${document.getElementById('q1-no').checked ? '✓' : ''}</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Saya dapat melakukan pemangkasan rambut graduasi/ bertumpuk (graduated cut)</td>
+            <td>Saya dapat menganalisis jenis-jenis pemangkasan rambut dasar (teknik solid)</td>
             <td>${document.getElementById('q2-yes').checked ? '✓' : ''}</td>
             <td>${document.getElementById('q2-no').checked ? '✓' : ''}</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Saya dapat melakukan pemangkasan rambut layer/ berlapis (layering cut)</td>
+            <td>Saya dapat menerapkan prosedur pemangkasan rambut dasar (teknik solid)</td>
             <td>${document.getElementById('q3-yes').checked ? '✓' : ''}</td>
             <td>${document.getElementById('q3-no').checked ? '✓' : ''}</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Saya dapat menerapkan penampilan secara keseluruhan (total look)</td>
+            <td>${document.getElementById('q4-yes').checked ? '✓' : ''}</td>
+            <td>${document.getElementById('q4-no').checked ? '✓' : ''}</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Saya dapat mengakhiri pemangkasan rambut dasar dan penataan (teknik solid)</td>
+            <td>${document.getElementById('q5-yes').checked ? '✓' : ''}</td>
+            <td>${document.getElementById('q5-no').checked ? '✓' : ''}</td>
           </tr>
         </table></body></html>`;
 
